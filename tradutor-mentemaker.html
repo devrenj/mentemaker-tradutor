@@ -53,6 +53,22 @@
     <!-- Div de resultados -->
     <div id="result" class="invisible bg-green-100 p-2 mt-6 text-center text-gray-700"></div>
   </div>
+
+  <script src="./src/scripts/tradutor.js"></script>
+  <script>
+    const form = document.querySelector('form');
+    const resultDiv = document.getElementById('result');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const toTranslate = e.target.elements.toTranslate.value;
+      const origin = e.target.elements.languageOrigin.value;
+      const dest = e.target.elements.languageDest.value;
+      const translated = await translateText(toTranslate, origin, dest);
+      resultDiv.textContent = translated;
+      resultDiv.classList.remove('invisible');
+    });
+  </script>
 </body>
 
 </html>
